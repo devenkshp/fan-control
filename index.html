@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="./screenshot.png" />
+    <title>Fan Control</title>
+    <link rel="stylesheet" href="style.css" class="css" />
+  </head>
+  <body>
+    <dialog id="dialog">
+      <div class="dialog-container">
+        <div class="dialog-header">
+          <img src="./assets/alert-circle.svg" />
+          <p>Failed to connect to the fan</p>
+        </div>
+        <div class="dialog-body">
+          <p>Please make sure:</p>
+          <ol>
+            <li>
+              Your fan and this device are connected to the same network/router.
+            </li>
+            <li>
+              Your fan IP address correct.<br />
+              Make sure you've entered correct IP address by clicking on the cog
+              icon on the top right corner of this screen.
+            </li>
+          </ol>
+          <div>
+            <a id="reconnect-btn">Reconnect </a>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <div class="container">
+      <div id="setting-btn-container">
+        <button id="setting-btn">
+          <img src="./assets/cog.svg" />
+        </button>
+      </div>
+      <div class="display">
+        <div class="indicator-container row">
+          <div class="card">
+            <div class="icon">
+              <img src="./assets/fan.svg" />
+            </div>
+            <div class="value">
+              <p>Status</p>
+              <p id="fan-state-indicator">N/A</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="icon">
+              <img src="./assets/speedometer.svg" />
+            </div>
+            <div class="value">
+              <p>Speed</p>
+              <p id="speed-indicator">N/A</p>
+            </div>
+          </div>
+        </div>
+        <div class="indicator-container row">
+          <div class="card">
+            <div class="icon">
+              <img src="./assets/swing.svg" />
+            </div>
+            <div class="value">
+              <p>Swing</p>
+              <p id="swing-indicator">N/A</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="icon">
+              <img src="./assets/timer.svg" />
+            </div>
+            <div class="value">
+              <p>Timer</p>
+              <p id="timer-indicator">N/A</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="button-container">
+        <div class="row">
+          <button class="button" id="btn-swing">
+            <span class="label" id="swing-btn-lbl"></span>
+          </button>
+          <button class="button" id="btn-three">
+            <span class="label">3</span>
+          </button>
+        </div>
+        <div class="row">
+          <button class="button" id="btn-one">
+            <span class="label">1</span>
+          </button>
+          <button class="button" id="btn-two">
+            <span class="label">2</span>
+          </button>
+          <button class="button" id="btn-power">
+            <span class="pwr-on" id="pwr-btn-lbl"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal for setting up IP address -->
+      <div id="modal">
+        <div id="modal-inner-container">
+          <div id="modal-header">
+            <h4>Set Fan IP</h4>
+          </div>
+          <div id="modal-body">
+            <label for="fan-ip">IP Address</label>
+            <input type="text" placeholder="eg: 192.168.1.100" id="fan-ip" />
+            <button id="set-ip-btn">Set</button>
+            <p>
+              Current IP address:
+              <span id="current-ip">N/A</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Snackbar -->
+      <div id="snackbar"></div>
+
+      <footer>Fan Control v1.0.1</footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

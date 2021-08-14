@@ -1,0 +1,8 @@
+{
+  "name": "Fan Control",
+  "short_name": "Fan",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f8f8f8",
+  "description": "This program controls fan over WiFi."
+}

@@ -9,30 +9,35 @@
     <link rel="stylesheet" href="style.css" class="css" />
   </head>
   <body>
-    <dialog id="dialog">
-      <div class="dialog-container">
-        <div class="dialog-header">
-          <img src="./assets/alert-circle.svg" />
-          <p>Failed to connect to the fan</p>
-        </div>
-        <div class="dialog-body">
-          <p>Please make sure:</p>
-          <ol>
-            <li>
-              Your fan and this device are connected to the same network/router.
-            </li>
-            <li>
-              Your fan IP address correct.<br />
-              Make sure you've entered correct IP address by clicking on the cog
-              icon on the top right corner of this screen.
-            </li>
-          </ol>
-          <div>
-            <a id="reconnect-btn">Reconnect </a>
+    <!-- Dialog modal to display error if can't connect to the fan -->
+    <dialog>
+      <div id="dialog">
+        <div class="dialog-container">
+          <div class="dialog-header">
+            <img src="./assets/alert-circle.svg" />
+            <p>Failed to connect to the fan</p>
+          </div>
+          <div class="dialog-body">
+            <p>Please make sure:</p>
+            <ol>
+              <li>
+                Your fan and this device are connected to the same
+                network/router.
+              </li>
+              <li>
+                Your fan IP address correct.<br />
+                Make sure you've entered correct IP address by clicking on the
+                cog icon on the top right corner of this screen.
+              </li>
+            </ol>
+            <div>
+              <a id="reconnect-btn">Reconnect </a>
+            </div>
           </div>
         </div>
       </div>
     </dialog>
+
     <div class="container">
       <div id="setting-btn-container">
         <button id="setting-btn">

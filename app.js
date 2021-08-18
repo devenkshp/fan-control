@@ -9,6 +9,7 @@ class Fan {
    * @param {HTMLElement} swingIndicator - Element which show wherether the fan is swinging or not on UI
    * @param {HTMLElement} timerIndicator - Element which shows timer state on UI
    * @param {HTMLElement} dialog - Element to show error when failed to connect to the fan
+   * @param {HTMLElement} spinner - Spinner element to show loading condition
    */
   constructor(
     address,
@@ -17,7 +18,8 @@ class Fan {
     speedIndicator,
     swingIndicator,
     timerIndicator,
-    dialog
+    dialog,
+    spinner
   ) {
     this.address = address;
     this.pwrBtnLbl = pwrBtnLbl;
@@ -26,6 +28,7 @@ class Fan {
     this.swingIndicator = swingIndicator;
     this.timerIndicator = timerIndicator;
     this.dialog = dialog;
+    this.spinner = spinner;
 
     this.state = {
       loading: true,
@@ -96,6 +99,9 @@ class Fan {
 
   // Function to update UI on every state change
   updateUi() {
+    this.spinner.style.display =
+      this.state.loading && !this.state.error ? "flex" : "none";
+
     !this.state.loading && this.state.error
       ? this.dialog.show()
       : this.dialog.close();
@@ -104,28 +110,32 @@ class Fan {
       ? "url(./assets/power-on.svg)"
       : "url(./assets/power-off.svg)";
 
-    this.fanState.innerText = this.state.error
-      ? "n/a"
-      : this.state.fanOn
-      ? "On"
-      : "Off";
+    this.fanState.innerText =
+      this.state.error || this.state.loading
+        ? "n/a"
+        : this.state.fanOn
+        ? "On"
+        : "Off";
 
-    this.fanState.style.color = this.state.error
-      ? "#505050"
-      : this.state.fanOn
-      ? "#00CE00"
-      : "red";
+    this.fanState.style.color =
+      this.state.error || this.state.loading
+        ? "#505050"
+        : this.state.fanOn
+        ? "#00CE00"
+        : "red";
 
-    this.swingIndicator.innerText = this.state.error
-      ? "n/a"
-      : this.state.swing
-      ? "On"
-      : "Off";
-    this.swingIndicator.style.color = this.state.error
-      ? "#505050"
-      : this.state.swing
-      ? "#00CE00"
-      : "red";
+    this.swingIndicator.innerText =
+      this.state.error || this.state.loading
+        ? "n/a"
+        : this.state.swing
+        ? "On"
+        : "Off";
+    this.swingIndicator.style.color =
+      this.state.error || this.state.loading
+        ? "#505050"
+        : this.state.swing
+        ? "#00CE00"
+        : "red";
 
     this.speedIndicator.innerText =
       this.state.speed == 1
@@ -157,7 +167,8 @@ window.onload = () => {
     currentIp = document.getElementById("current-ip"),
     snackbar = document.getElementById("snackbar"),
     reconnectBtn = document.getElementById("reconnect-btn"),
-    dialog = document.getElementsByTagName("dialog")[0];
+    dialog = document.getElementsByTagName("dialog")[0],
+    spinner = document.getElementById("spinner");
 
   // Read fan IP address from local storage
   let fanIp = localStorage.getItem("fanIp");
@@ -205,7 +216,8 @@ window.onload = () => {
     speedIndicator,
     swingIndicator,
     timerIndicator,
-    dialog
+    dialog,
+    spinner
   );
 
   // Connect to the fan

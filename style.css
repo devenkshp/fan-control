@@ -15,12 +15,44 @@ body {
 }
 
 body {
+  position: relative;
   background-color: #f8f8f8;
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgb(80, 80, 80);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Connecting spinner */
+#spinner {
+  display: flex;
+  position: absolute;
+  top: 3em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+  font-size: 0.8em;
+}
+#spinner p {
+  font-weight: bold;
+}
+#spinner div {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0.5em;
+  border: 4px solid transparent;
+  border-radius: 100%;
+  border-color: rgba(0, 180, 0, 1);
+  border-top-color: rgba(0, 150, 0, 1);
+  animation: spin linear 1.5s infinite;
+  transition: all;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .container {
   width: auto;
